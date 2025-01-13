@@ -24,10 +24,11 @@
  * @param server_ip The IP address of the server.
  * @param server_port The port number of the server.
  * @param rx_buffer The buffer to store received data.
+ * @param connect_msg The message to send to the server.
  */
 void UDPClient_Connect(uint8_t client_ip[4], uint16_t client_port,
 						uint8_t server_ip[4], uint16_t server_port,
-                        uint8_t *rx_buffer);
+                        uint8_t *rx_buffer, char *connect_msg);
 
 static void UDPClient_Send(char *data, uint8_t data_len);
 

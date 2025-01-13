@@ -25,7 +25,7 @@ char *buffer;
 
 void UDPClient_Connect(uint8_t client_ip[4], uint16_t client_port,
 						uint8_t server_ip[4], uint16_t server_port,
-						uint8_t *rx_buffer)
+						uint8_t *rx_buffer, char *connect_msg)
 {
 	buffer = (char *)rx_buffer;
 	
@@ -48,7 +48,7 @@ void UDPClient_Connect(uint8_t client_ip[4], uint16_t client_port,
 	if (err == ERR_OK)
 	{
 		/* 2. Send message to server */
-		UDPClient_Send("IRIS Juara Harga Mati!\n", 24);
+		UDPClient_Send(connect_msg, sizeof(connect_msg));
 
 		/* 3. Set a receive callback for the upcb */
 		udp_recv(upcb, UDP_Receive_Callback, NULL);
