@@ -5,11 +5,11 @@ Library untuk komunikasi UDP stm32 sebagai client
 1. cd ke direktori repo yang ingin ditambah library
 1. Tambahkan sebagai submodule ke direktori yang diinginkan
 ```git
-git submodule https://github.com/IRIS-ITS/iris_udp_client_lib <path_direktori>
+git submodule add https://github.com/IRIS-ITS/iris_udp_client_lib <path_direktori>
 ```
 Contoh:
 ```git
-git submodule https://github.com/IRIS-ITS/iris_udp_client_lib Core/Lib/iris_udp_client
+git submodule add https://github.com/IRIS-ITS/iris_udp_client_lib Core/Lib/iris_udp_client
 ```
 
 TODO: Tambah Dokuentasi
