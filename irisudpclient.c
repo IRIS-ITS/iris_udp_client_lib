@@ -27,7 +27,7 @@ void UDPClient_Connect(uint8_t client_ip[4], uint16_t client_port,
 						uint8_t server_ip[4], uint16_t server_port,
 						uint8_t *rx_buffer)
 {
-	buffer = rx_buffer;
+	buffer = (char *)rx_buffer;
 	
 	err_t err;
 
