@@ -12,6 +12,7 @@ void UDP_Receive_Callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const
 
 struct udp_pcb *upcb;
 char *buffer;
+void (*callback)(void);
 
 
 /* IMPLEMENTATION FOR UDP CLIENT :   source:https://www.geeksforgeeks.org/udp-server-client-implementation-c/
@@ -25,9 +26,11 @@ char *buffer;
 
 void UDPClient_Connect(uint8_t client_ip[4], uint16_t client_port,
 						uint8_t server_ip[4], uint16_t server_port,
-						uint8_t *rx_buffer, char *connect_msg)
+						uint8_t *rx_buffer, char *connect_msg,
+						void (*callback_funct)(void))
 {
 	buffer = (char *)rx_buffer;
+	callback = callback_funct;
 	
 	err_t err;
 
@@ -56,7 +59,7 @@ void UDPClient_Connect(uint8_t client_ip[4], uint16_t client_port,
 	}
 }
 
-static void UDPClient_Send(char *data, uint8_t data_len)
+void UDPClient_Send(char *data, uint8_t data_len)
 {
   struct pbuf *txBuf;
   uint8_t len = data_len;
@@ -85,4 +88,7 @@ void UDP_Receive_Callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const
 
 	/* Free receive pbuf */
 	pbuf_free(p);
+
+	/* Call callback funct */
+	callback();
 }
