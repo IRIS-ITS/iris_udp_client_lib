@@ -11,7 +11,7 @@
 void UDP_Receive_Callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
 
 struct udp_pcb *upcb;
-char *buffer;
+int8_t *buffer;
 void (*callback)(void);
 
 
@@ -26,10 +26,10 @@ void (*callback)(void);
 
 void UDPClient_Connect(uint8_t client_ip[4], uint16_t client_port,
 						uint8_t server_ip[4], uint16_t server_port,
-						uint8_t *rx_buffer, char *connect_msg,
+						int8_t *rx_buffer, char *connect_msg,
 						void (*callback_funct)(void))
 {
-	buffer = (char *)rx_buffer;
+	buffer = (int8_t *)rx_buffer;
 	callback = callback_funct;
 	
 	err_t err;
@@ -84,7 +84,7 @@ void UDPClient_Send(char *data, uint8_t data_len)
 void UDP_Receive_Callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
 	/* Copy the data from the pbuf */
-	strncpy (buffer, (char *)p->payload, p->len);
+	memcpy (buffer, (int8_t *)p->payload, p->len);
 
 	/* Free receive pbuf */
 	pbuf_free(p);
