@@ -31,6 +31,6 @@ void UDPClient_Connect(uint8_t client_ip[4], uint16_t client_port,
                         int8_t *rx_buffer, char *connect_msg,
 						void (*callback_funct)(void));
 
-void UDPClient_Send(char *data, uint8_t data_len);
+void UDPClient_Send(uint8_t *data, uint8_t data_len);
 
 #endif /* INC_IRIS_UDP_CLIENT_H */
