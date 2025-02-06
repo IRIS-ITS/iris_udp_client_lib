@@ -52,7 +52,7 @@ void UDPClient_Connect(uint8_t client_ip[4], uint16_t client_port,
 	{
 		/* 2. Send message to server */
 		if (connect_msg != NULL || strlen(connect_msg) > 0)
-			UDPClient_Send(connect_msg, sizeof(connect_msg));
+			UDPClient_Send((uint8_t *)connect_msg, sizeof(connect_msg));
 
 		/* 3. Set a receive callback for the upcb */
 		udp_recv(upcb, UDP_Receive_Callback, NULL);
